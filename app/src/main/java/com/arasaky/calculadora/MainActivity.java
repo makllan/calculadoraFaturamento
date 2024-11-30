@@ -1,5 +1,6 @@
 package com.arasaky.calculadora;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,12 +31,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText editPreco, editQuantidade, editCustoVariavel;
+    private EditText editPreco, editQuantidade;
     private Button btnAdicionarCusto, btnCalcular;
     private RecyclerView recyclerCustosFixos;
     private TextView textResultado;
@@ -48,14 +51,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        editPreco = findViewById(R.id.editPreco);
-        editQuantidade = findViewById(R.id.editQuantidade);
-        editCustoVariavel = findViewById(R.id.editCustoVariavel);
-        btnAdicionarCusto = findViewById(R.id.btnAdicionarCusto);
-        btnCalcular = findViewById(R.id.btnCalcular);
+        editPreco = findViewById(R.id.editPreco2);
+        editQuantidade = findViewById(R.id.editQuantidade2);
+        btnAdicionarCusto = findViewById(R.id.btnAdicionarCusto2);
+        btnCalcular = findViewById(R.id.btnCalcular2);
         recyclerCustosFixos = findViewById(R.id.recyclerCustosFixos);
-        textResultado = findViewById(R.id.textResultado);
+        textResultado = findViewById(R.id.textResultado2);
+        LottieAnimationView lottieAnimationView = findViewById(R.id.lottieAnimationView2);
+                lottieAnimationView.setAnimation(R.raw.lottieup);
+        getWindow().setStatusBarColor(Color.parseColor("#2196F3"));
 
+        // Configurar lista de custos fixos
         custosFixos = new ArrayList<>();
         adapter = new CustoFixoAdapter(custosFixos, position -> {
             custosFixos.remove(position);
@@ -99,23 +105,26 @@ public class MainActivity extends AppCompatActivity {
 
     private void calcularLucro() {
         try {
+
             double preco = Double.parseDouble(editPreco.getText().toString());
             int quantidade = Integer.parseInt(editQuantidade.getText().toString());
-            double custoVariavel = Double.parseDouble(editCustoVariavel.getText().toString());
+
 
             double receitaTotal = preco * quantidade;
-            double totalCustosVariaveis = custoVariavel * quantidade;
+
 
             double totalCustosFixos = 0;
             for (CustoFixo custo : custosFixos) {
                 totalCustosFixos += custo.getValor();
             }
 
-            double lucro = receitaTotal - (totalCustosVariaveis + totalCustosFixos);
+
+            double lucro = receitaTotal - totalCustosFixos;
+
 
             textResultado.setText(String.format(
-                    "Receita Total: R$ %.2f\nCustos Fixos: R$ %.2f\nCustos Variáveis: R$ %.2f\nLucro Líquido: R$ %.2f",
-                    receitaTotal, totalCustosFixos, totalCustosVariaveis, lucro));
+                    "Receita Total: R$ %.2f\nCustos Fixos: R$ %.2f\nLucro Líquido: R$ %.2f",
+                    receitaTotal, totalCustosFixos, lucro));
         } catch (Exception e) {
             Toast.makeText(this, "Preencha todos os campos corretamente!", Toast.LENGTH_SHORT).show();
         }

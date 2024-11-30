@@ -1,73 +1,127 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="16dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true">
 
-    <!-- Preço por Unidade -->
-    <com.google.android.material.textfield.TextInputLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_gradient"
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <!-- Animação com Lottie -->
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationView2"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true" />
+
+        <!-- Preço por Unidade -->
+        <TextView
+            android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="3dp"
-            android:hint="hint" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/adlam_display"
+            android:text="Dena"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp" />
 
-    <EditText
-        android:id="@+id/editPreco"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Preço por Unidade"
-        android:inputType="numberDecimal" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp">
 
-    <!-- Quantidade Vendida -->
-    <EditText
-        android:id="@+id/editQuantidade"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Quantidade Vendida"
-        android:inputType="number" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp">
 
-    <!-- Custo Variável por Unidade -->
-    <EditText
-        android:id="@+id/editCustoVariavel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Custo Variável por Unidade"
-        android:inputType="numberDecimal" />
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Preço por unidade"
+                    android:textColor="#B1161616" />
 
-    <!-- Botão para adicionar custo fixo -->
-    <Button
-        android:id="@+id/btnAdicionarCusto"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Adicionar Custo Fixo" />
+                <EditText
+                    android:id="@+id/editPreco2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal" />
 
-    <!-- Lista de custos fixos -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerCustosFixos"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="10dp" />
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Quantidade vendida"
+                    android:textColor="#B1161616" />
 
-    <!-- Botão Calcular -->
-    <Button
-        android:id="@+id/btnCalcular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Calcular" />
+                <EditText
+                    android:id="@+id/editQuantidade2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:inputType="number" />
 
-    <!-- Resultado -->
-    <TextView
-        android:id="@+id/textResultado"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="20dp"
-        android:text="Resultado: "
-        android:textSize="18sp" />
-</LinearLayout>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnAdicionarCusto2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:backgroundTint="#00BCD4"
+                    android:elevation="10dp"
+                    android:text="Adicionar Custo Fixo"
+                    android:textColor="#FFFFFF" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerCustosFixos"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnCalcular2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:backgroundTint="#00BCD4"
+                    android:text="Calcular"
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/textResultado2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20dp"
+                    android:text="Resultado: "
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Quantidade Vendida -->
+
+        <!-- Botão para adicionar custo fixo -->
+
+        <!-- Lista de custos fixos -->
+
+        <!-- Botão Calcular -->
+
+        <!-- Resultado -->
+    </LinearLayout>
+</ScrollView>
+
 
